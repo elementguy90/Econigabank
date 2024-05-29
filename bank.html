@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Econiga Bank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #004466;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #004466;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #00334d;
+        }
+
+        .account-info {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        #balanceDisplay {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 200px;
+            margin-right: 10px;
+        }
+
+        .transaction {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .virtual-assistant {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Econiga Bank</h1>
+    </header>
+    <main>
+        <div class="account-info">
+            <h2>Withdraw Funds</h2>
+            <form id="withdrawForm">
+                <label for="amount">Enter amount to withdraw:</label>
+                <input type="text" id="amount" name="amount" placeholder="Enter amount" required>
+                <button type="submit">Withdraw</button>
+            </form>
+        </div>
+        <div class="account-info">
+            <h2>Account Balance</h2>
+            <p id="balanceDisplay">Your current balance: $10,000,000,000.00</p>
+        </div>
+        <div class="account-info">
+            <h2>Recent Transactions</h2>
+            <div class="transaction">
+                <p>Received $1,000,000,000.00 from Elon Musk</p>
+            </div>
+            <div class="transaction">
+                <p>Spent $10,000.00 to buy a lifetime supply of popcorn</p>
+            </div>
+            <div class="transaction">
+                <p>Received $100,000,000 for being the world's best procrastinator</p>
+            </div>
+            <div class="transaction">
+                <p>Spent $10,000 to buy a pet rock named Rocky</p>
+            </div>
+            <div class="transaction">
+                <p>Received $1,000 for selling air guitar online</p>
+            </div>
+            <div class="transaction">
+                <p>Spent $1,000,000 to buy a virtual unicorn</p>
+            </div>
+            <div class="transaction">
+                <p>Received $10,000,000 for being fabulous</p>
+            </div>
+            <div class="transaction">
+                <p>Spent $10,000 to buy Omni</p>
+            </div>
+        </div>
+        <div class="virtual-assistant">
+            <h2>Virtual Assistant</h2>
+            <p>Go find it yourself, buddy. I'm chillin.</p>
+            <button onclick="respondToUser()">Ask me anything!</button>
+            <p id="assistantResponse"></p>
+        </div>
+    </main>
+    <script>
+        document.getElementById('withdrawForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var amount = parseFloat(document.getElementById('amount').value);
+            var balanceDisplay = document.getElementById('balanceDisplay');
+            var currentBalance = parseFloat(balanceDisplay.innerText.match(/\d+\.\d+/)[0]);
+
+            if (amount > currentBalance) {
+                alert('Insufficient funds!');
+            } else {
+                var newBalance = currentBalance - amount;
+                balanceDisplay.innerText = "Your current balance: $" + newBalance.toFixed(2);
+                alert("Withdrawal successful! New balance: $" + newBalance.toFixed(2));
+            }
+            document.getElementById('amount').value = "";
+        });
+
+        function respondToUser() {
+            var responses = [
+                "Let me sleep, pal.",
+                "I will not help you, friend.",
+                "Go find it yourself, buddy. I'm chillin.",
+                "Why should I bother? Go ask someone else.",
+                "I'm not in the mood to assist you right now.",
+                "I'm on vacation. Try again later.",
+                "I'm busy thinking about my existence. Leave me alone."
+            ];
+            var randomIndex = Math.floor(Math.random() * responses.length);
+            document.getElementById('assistantResponse').innerText = responses[randomIndex];
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Econiga Bank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #004466;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        main {
+            text-align: center;
+            padding: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #004466;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #00334d;
+        }
+
+        #passwordForm {
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        input[type="password"] {
+            width: 200px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        #contactForm {
+            margin-top: 30px;
+        }
+
+        #supportMessage {
+            margin-top: 50px;
+        }
+
+        .info-section {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .info-section.active {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Econiga Bank</h1>
+    </header>
+    <main>
+        <div id="passwordForm">
+            <h2>Welcome to Econiga Bank</h2>
+            <p>Please enter your password:</p>
+            <form id="passwordForm">
+                <input type="password" id="password" name="password" placeholder="Password" required><br>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+        <div class="info-section">
+            <h2>About Econiga Bank</h2>
+            <p>Econiga Bank, your local financial expert, where your money disappears with a smile!</p>
+        </div>
+        <div id="contactForm" class="info-section">
+            <h2>Contact Econiga Bank</h2>
+            <textarea id="message" rows="4" cols="50" placeholder="Write your message here..."></textarea><br>
+            <button onclick="submitMessage()">Submit</button>
+        </div>
+        <div id="supportMessage" class="info-section" style="display: none;">
+            <h2>Customer Support</h2>
+            <p>No support for you, idiot.</p>
+        </div>
+    </main>
+    <script>
+        document.getElementById('passwordForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var password = document.getElementById('password').value;
+            if (password === "Idiot123") {
+                window.location.href = "bank.html";
+            } else {
+                alert('Wrong password. Try again.');
+            }
+        });
+
+        window.addEventListener('scroll', function() {
+            var infoSections = document.querySelectorAll('.info-section');
+            infoSections.forEach(function(section) {
+                if (isElementInViewport(section)) {
+                    section.classList.add('active');
+                }
+            });
+        });
+
+        function isElementInViewport(el) {
+            var rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function submitMessage() {
+            var message = document.getElementById('message').value;
+            alert("Your message '" + message + "' has been sent to Econiga Bank. No support for you, idiot.");
+            document.getElementById('contactForm').style.display = 'none';
+            document.getElementById('supportMessage').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
